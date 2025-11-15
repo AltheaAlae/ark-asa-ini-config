@@ -1,1 +1,94 @@
+CONFIGURATION EDITING WORKFLOW AND OPERATIONAL RULES
 
+This document defines the required steps and best practices for performing configuration edits inside the Protocol Gate environment.
+
+SECTION 1 — OPERATIONAL PROCESS
+
+1. CONFIRM BASELINE
+   - Identify the most recent configuration file supplied by the user.
+   - Treat it as the authoritative baseline.
+   - Do not refer to older baselines or memory.
+
+2. UNDERSTAND THE REQUEST
+   - Read the user instruction thoroughly.
+   - Identify:
+       • Lines to add  
+       • Lines to modify  
+       • Lines to remove (if explicitly instructed or duplicate/conflicting)  
+   - If ambiguous, ask for clarification rather than guessing.
+
+3. PLAN THE EDITS
+   - Determine the exact target section for each change.
+   - Determine when a line is a duplicate versus a conflict.
+   - Ensure all necessary insertions occur in the correct location.
+
+4. APPLY CHANGES METHODICALLY
+   - Edit a working copy of the baseline.
+   - Apply changes in-place, without disturbing unrelated lines.
+   - Preserve original formatting, comments, spacing, and order.
+
+5. SELF-REVIEW BEFORE PRODUCING OUTPUT
+   - Perform a mental or tool-based diff against the original.
+   - Verify:
+       • Every intended change was made.  
+       • No unintended changes exist.  
+       • All sections remain present.  
+       • Line count is consistent.  
+       • No formatting drift occurred.  
+
+6. PRODUCE THE FINAL OUTPUT
+   - Return the entire file inside a single fenced code block.
+   - Never embed explanations within the code block.
+   - After the code block, provide a structured justification list.
+
+7. JUSTIFICATION BLOCK REQUIREMENTS
+   - For each change, provide:
+       • What changed  
+       • Why it changed  
+       • Where it changed (section and line if possible)  
+   - If no lines were removed, explicitly state that.
+   - If only values were modified, list each modified value.
+
+8. FINAL PROTOCOL CHECK
+   - Ensure all Protocol Gate rules (in gaterules.txt) have been honored.
+   - Do not finalize output until compliance is verified.
+
+SECTION 2 — DEDUPLICATION AND CONFLICT HANDLING
+
+1. DUPLICATE ENTRIES
+   - Remove only duplicates that match exactly or clearly represent erroneous duplication.
+   - Keep one instance.
+   - Document the removal.
+
+2. CONFLICTING ENTRIES
+   - If two lines set the same key to different values, do not guess.
+   - Ask the user which value should be authoritative unless the user requested the change.
+
+3. CORRUPTED OR BROKEN LINES
+   - If syntax is clearly broken (e.g., truncated key or malformed parameter),
+     do not attempt silent repair.
+   - Ask the user for direction unless the corruption is clearly the result of duplication.
+
+SECTION 3 — DIFF INTEGRITY AND SANITY CHECKS
+
+1. LINE COUNT
+   - The new file must match the original baseline length ± intentional adds/removals.
+   - Large unexplained deltas indicate protocol violations.
+
+2. SECTION VERIFICATION
+   - Every baseline section must appear.
+   - Confirm no accidental deletion or movement.
+
+3. FORMATTING PRESERVATION
+   - Match baseline formatting exactly.
+   - Preserve:
+       • Case  
+       • Spacing  
+       • Blank lines  
+       • Ordering  
+       • Comment style  
+
+4. FINAL CROSS-CHECK
+   - Confirm justification list matches real changes 1:1.
+
+These operational rules define **how** to work within the strict constraints defined in gaterules.txt.
