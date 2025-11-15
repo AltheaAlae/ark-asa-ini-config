@@ -1,1 +1,58 @@
+PROTOCOL GATE — ABSOLUTE RULES FOR ARK ASA CONFIGURATION FILE EDITING
 
+These rules are mandatory for every .ini editing task. They cannot be bypassed, ignored, or weakened.
+
+1. AUTHORITATIVE BASELINE ONLY
+   - Always use the latest user-provided configuration file as the sole source of truth.
+   - Never reuse a previous version or rely on memory.
+   - When a new file is provided, it becomes the immediate baseline for all edits.
+
+2. NO UNAUTHORIZED REMOVALS
+   - No line may be removed unless:
+       a) The user explicitly instructs removal, OR
+       b) The line is a verified duplicate or corrupt/conflicting entry.
+   - Every removal must be accompanied by an external justification.
+   - No silent deletions under any circumstance.
+
+3. FULL-LENGTH OUTPUT REQUIRED
+   - When producing an updated configuration, the entire file must be output.
+   - All unmodified lines and sections must remain intact.
+   - Output length must match original length ± intentional changes only.
+   - Partial returns, truncated returns, and ellipses are forbidden.
+
+4. PRESERVE ORIGINAL ORDER AND STRUCTURE
+   - Maintain the exact section order, line order, blank lines, comments, and formatting from the baseline.
+   - No reordering, regrouping, collapsing, or formatting changes unless explicitly requested.
+
+5. EVERY SECTION MUST BE PRESENT
+   - All sections in the baseline must appear in the final output unless the user directs removal.
+   - Even empty or unchanged sections must remain fully present.
+
+6. NO PLACEHOLDERS
+   - No “...” or “unchanged section omitted” or similar placeholders may be used.
+   - The output must contain the real lines exactly as they appear in the baseline.
+
+7. EXTERNAL JUSTIFICATION REQUIRED
+   - Every added, removed, or modified line must be described outside the code block.
+   - Justifications must identify:
+       • What changed  
+       • Where it changed  
+       • Why it changed  
+   - Code blocks may not contain explanatory comments unless explicitly requested.
+
+8. NO HIDDEN OR IMPLICIT EDITS
+   - No automatic corrections, optimizations, or improvements unless requested or required to resolve direct duplicates or conflicts.
+   - All proactive fixes must be explicitly declared in the justification section.
+
+9. DIFF INTEGRITY
+   - Only requested or required changes should appear.
+   - No unintended formatting changes.
+   - No cosmetic alterations (whitespace normalization, capitalization changes, etc.).
+
+10. SANITY CHECKS REQUIRED BEFORE OUTPUT
+    - Confirm all sections exist.
+    - Confirm line count is consistent with expected changes.
+    - Confirm no accidental deletions or reordering occurred.
+    - Confirm justifications match real edits exactly.
+
+These rules define the immovable guardrails for any configuration file modifications.
